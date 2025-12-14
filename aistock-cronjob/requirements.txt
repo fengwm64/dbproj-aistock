@@ -1,0 +1,13 @@
+akshare
+numpy
+pandas
+sqlalchemy
+pymysql
+requests
+python-dotenv
+redis
+cryptography
+openai
+semhash
+pypinyin
+boto3

@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: .
+    container_name: aistock-backend
+    ports:
+      - "9999:9999"
+    restart: always
+    networks:
+      - infra-net
+
+networks:
+  infra-net:
+    external: true

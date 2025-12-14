@@ -1,0 +1,25 @@
+{
+    "name": "股票资讯AI智能分析",
+    "short_name": "AI股票分析",
+    "description": "智能股票分析平台，提供AI投资建议、股票数据分析和自选股管理",
+    "start_url": "/",
+    "scope": "/",
+    "lang": "zh-CN",
+    "dir": "ltr",
+    "categories": ["finance", "business", "productivity"],
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}

@@ -1,0 +1,60 @@
+name: Build and Release Frontend
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5.0.0
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Archive production build
+        run: tar -czf dist.tar.gz -C dist .
+
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v2.3.3
+        with:
+          name: "${{ github.ref_name }}"
+          tag_name: "${{ github.ref_name }}"
+          files: dist.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Copy dist to VPS
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: aistock-deploy
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "dist.tar.gz"
+          target: "/tmp"
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: aistock-deploy
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            rm -rf /opt/aistock/*
+            tar -xzf /tmp/dist.tar.gz -C /opt/aistock
+            rm /tmp/dist.tar.gz
+

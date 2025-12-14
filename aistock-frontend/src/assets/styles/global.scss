@@ -1,0 +1,86 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* 颜色变量 */
+:root {
+  --primary-color: #409EFF;
+  --success-color: #67C23A;
+  --warning-color: #E6A23C;
+  --danger-color: #F56C6C;
+  --info-color: #909399;
+  
+  --text-primary: #303133;
+  --text-secondary: #606266;
+  --text-tertiary: #909399;
+  
+  --background-color: #f5f7fa;
+  --border-color: #dcdfe6;
+}
+
+/* 涨跌颜色 */
+.stock-up {
+  color: var(--danger-color);
+}
+
+.stock-down {
+  color: var(--success-color);
+}
+
+/* 布局容器 */
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* 响应式布局 */
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
+/* 通用卡片样式 */
+.card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* 默认头像样式 */
+[data-default-avatar] {
+  background-image: url('../../assets/default-avatar.svg'); // 使用相对路径
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f0f0f0;
+}
+
+/* 网站页脚样式 */
+.site-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+services:
+  aistock-cron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aistock-cron
+    environment:
+      - PYTHONPATH=/app
+      - TZ=Asia/Shanghai
+    env_file:
+      - .env
+    volumes:
+      - logs:/var/log/cron
+      - data:/app/data
+    restart: always
+    networks:
+      - infra-net
+
+networks:
+  infra-net:
+    external: true
+
+volumes:
+  logs:
+  data:
